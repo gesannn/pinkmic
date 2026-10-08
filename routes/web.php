@@ -7,6 +7,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+
+if (app()->environment('production')) {
+    URL::forceScheme('https');
+}
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/studio/{studio}', [HomeController::class, 'show'])->name('studio.show');
